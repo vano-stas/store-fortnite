@@ -4,7 +4,7 @@ import SearchPanel from '../search-panel';
 
 import './main.scss';
 
-function Main ({ fetchItem, store, onToggleModal, loading, onSearchChange }) {
+function Main ({ fetchItem, store, onToggleModal, loading, onSearchChange, showError }) {
     return (
         <div className='main-app'>
             <SearchPanel onSearchChange={onSearchChange} />
@@ -12,7 +12,8 @@ function Main ({ fetchItem, store, onToggleModal, loading, onSearchChange }) {
                 fetchItem={fetchItem}
                 onToggleModal={onToggleModal}
                 store={store}
-                loading={loading} />
+                loading={loading}
+                showError={showError} />
         </div>
     )
 };

@@ -1,10 +1,6 @@
-@import '../../index.scss';
-
 .header-app {
     height: 10vh;
     width: 100%;
-    // background: lightblue;
-    border-bottom: solid 1px darkgray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,11 +35,15 @@
     padding: 0;
     padding-right: 50px;
     margin: 0;
+    a {
+        width: 120px;
+        margin-left: 20px;
+    }
     
 }
 
 .page-link-item {
-    margin-left: 20px;
+    width: 120px;
 }
 
 .page-link-item :active {
@@ -52,14 +52,12 @@
 }
 
 .button-item {
-    // color: white;
     width: 120px;
 }
 
 .cart-item {
     font-size: 18px
 }
-
 
 @media (max-width: 509px) {
     .nav-links-group {
@@ -72,7 +70,6 @@
     }
 
     .button-item {
-        // color: white;
         width: 120px;
         height: 30px;
         padding: 2px;

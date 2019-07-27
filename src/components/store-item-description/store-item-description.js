@@ -3,11 +3,11 @@ import CartButton from '../cart-button';
 
 import './store-item-description.scss';
 
-function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounterChange, increment, decrement, counter, addToCart, showStoreModal, setCounter }) {
+function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounterChange, increment, decrement, counter, addToCart, setCounter }) {
 
     useEffect(() => {
         setCounter(0);
-    }, [showStoreModal]);
+    }, [setCounter]);
 
     const { name, cost, description, image, isFeatured, ratings } = modalState;
 
@@ -17,10 +17,8 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounte
         : <p className='text-danger font-weight-bold'>Under the order</p>;
         
     const stopFun = (e) => {
-        // setCounter(0);
         e.stopPropagation();   
     }
-
 
     return (
         <div className='modal-wrapper' onClick={onToggleModal}>
@@ -39,7 +37,7 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounte
 
                     <div>
                         <p className='info-text'>Availability:</p>
-                        <p>{available}</p>
+                        <div>{available}</div>
                     </div>
                     <div className='cost'>
                         <p className='info-text'>Cost:</p>
@@ -66,7 +64,6 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounte
             </div>
         </div>
     )
-
 }
 
 export default StoreItemDescription;

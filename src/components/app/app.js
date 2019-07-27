@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Header from '../header';
 import Main from '../main';
 import HomePage from '../home-page';
+import ErrorIndicator from '../error-indicator';
 
 import './app.scss';
 import StoreItemDescription from '../store-item-description';
 
 function App () {
-
-    // useEffect(() => {
-    //     fetchItem()
-    // }, []);
-
-//    const initState = [{
-//        name: '',
-//        itemId: '',
-//        cost: '',
-//        image: '',
-//        description: '',
-//        isFeatured: '',
-//        rating: '',
-//        isNew: ''
-//    }]
 
     const [store, setStore] = useState([]);
     const [showStoreModal, setShowStoreModal] = useState(false);
@@ -32,48 +18,45 @@ function App () {
     const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0);
     const [counterAll, setCounterAll] = useState(0);
+    const [hasError, setHasError] = useState(false);
 
     const fetchItem = async () => {
-        const data = await fetch('https://fortnite-api.theapinetwork.com/store/get', {
-            headers: {'Authorization': '33e8190c766f0c01c3a16b38bc8edac4',
-        }});
+        try {
+            const data = await fetch('https://fortnite-api.theapinetwork.com/store/get', {
+                headers: {'Authorization': '33e8190c766f0c01c3a16b38bc8edac4',
+            }});
+            if (!data.ok) {
+                throw new Error(data.status);
+            }
 
-        const res = await data.json();
-        // console.log(res.data);
-        // const storeSt = res.data.map((item) => {
-        //     return ({
-        //         name: item.item.name,
-        //         itemId: item.itemId,
-        //         cost: item.store.cost,
-        //         image: item.item.images.background,
-        //         description: item.item.description,
-        //         isFeatured: item.store.isFeatured,
-        //         isNew: item.store.isNew
-        //     })
-        // });
-        const storeSt = [];
-        res.data.map((item, i) => {(
-            storeSt[i] = {
-                name: item.item.name,
-                itemId: item.itemId,
-                cost: item.store.cost,
-                image: item.item.images.background,
-                description: item.item.description,
-                isFeatured: item.store.isFeatured,
-                isNew: item.store.isNew,
-                ratings: item.item.ratings
-            })
-        })
-        setStore([...storeSt]);
-        setLoading(false);
+            const res = await data.json();
+            const storeSt = [];
+
+            res.data.map((item, i) => {(
+                storeSt[i] = {
+                    name: item.item.name,
+                    itemId: item.itemId,
+                    cost: item.store.cost,
+                    image: item.item.images.background,
+                    description: item.item.description,
+                    isFeatured: item.store.isFeatured,
+                    isNew: item.store.isNew,
+                    ratings: item.item.ratings
+                })
+            });
+            setStore([...storeSt]);
+            setLoading(false);
+        } catch(err) {
+            console.log(err);
+            setLoading(!loading);
+            setHasError(true);
+        }
     }
 
     const onToggleModal = (e) => {
-        // console.log(e);
         const item = store.filter(elem => {
             return elem.itemId === e;
         });
-        // console.log(item[0]);
         setModalState(item[0]);
         setShowStoreModal(!showStoreModal);
     }
@@ -83,10 +66,10 @@ function App () {
         setCounter(0);
     }
 
-    const stopFun = (e) => {
-        setCounter(0);
-        e.stopPropagation();   
-    }
+    // const stopFun = (e) => {
+    //     setCounter(0);
+    //     e.stopPropagation();   
+    // }
 
     const onSearchChange = (e) => {
         setTerm(e.target.value);
@@ -99,9 +82,6 @@ function App () {
         return items.filter( (item) => {
             return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
         });
-        // if (vis.length  === 0 ) {
-        //     return [];
-        // } else return vis;
     }
 
     const onCounterChange = (e) => {
@@ -110,26 +90,21 @@ function App () {
 
     const increment = () => {
         setCounter(counter + 1);
-        // console.log(counter);
     }
 
     const decrement = () => {
         if (counter >0) {
             setCounter(counter - 1);
-            // console.log(counter);
         } else {
             setCounter(0)
-            }
+        }
     }
 
     const addToCart = () => {
         setCounterAll(counterAll + counter);
         setShowStoreModal(!showStoreModal);
         setCounter(0);
-        // console.log(counter);
     }
-
-    // const storeModal = showStoreModal ? <StoreItemDescription /> : null;
 
     const storeModal = showStoreModal
     ? ReactDOM.createPortal( <StoreItemDescription 
@@ -141,13 +116,13 @@ function App () {
         decrement={decrement}
         counter={counter}
         addToCart={addToCart}
-        stopFun={stopFun}
-        showStoreModal={showStoreModal}
         setCounter={setCounter} />,
         document.getElementById('modal'))
     : null;
 
     const visibleItems = search(store, term);
+
+    const showError = hasError ? <ErrorIndicator /> : null;
 
 
     return (
@@ -162,20 +137,11 @@ function App () {
                         onToggleModal={onToggleModal}
                         onSearchChange={onSearchChange}
                         store={visibleItems}
-                        loading={loading} />
+                        loading={loading}
+                        showError={showError} />
                     )}/>
-                    {/* <Route path='/store' component={Main} /> */}
                 </Switch>
-
-                {/* <HomePage />
-                <Main
-                    fetchItem={fetchItem}
-                    onToggleModal={onToggleModal}
-                    onSearchChange={onSearchChange}
-                    store={visibleItems}
-                    loading={loading} />
-                 */}
-                 {storeModal}
+                {storeModal}
             </div>
         </Router>
     )

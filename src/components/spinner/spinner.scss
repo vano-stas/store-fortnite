@@ -1,16 +1,11 @@
 .container--box .box .spinner--3 {
-	border: 8px solid rgb(0, 0, 0);
-	border-bottom-color: rgb(182, 208, 238);
-	border-top-color: rgb(182, 208, 238);
+	border: 8px solid rgb(12, 35, 161);
+	border-bottom-color: rgb(234, 238, 23);
+	border-top-color: rgb(234, 238, 23);
     animation: spinner3 1000ms ease infinite;
     height: 60px;
 	width: 60px;
 	border-radius: 50%;
-	/* padding-top: 20px; */
-	/* display: flex;
-	justify-content: center;
-	align-items: center; */
-
 }
 
 .box {
