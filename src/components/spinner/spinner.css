@@ -1,0 +1,27 @@
+.container--box .box .spinner--3 {
+	border: 4px solid rgba(0, 0, 0);
+	border-bottom-color: rgb(182, 208, 238);
+	border-top-color: rgb(182, 208, 238);
+    animation: spinner3 1000ms ease infinite;
+    height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	/* padding-top: 20px; */
+	/* display: flex;
+	justify-content: center;
+	align-items: center; */
+
+}
+
+.box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 20px;
+}
+
+@keyframes spinner3 {
+	to {
+		transform: rotate(360deg);
+	}
+}

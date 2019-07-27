@@ -1,0 +1,12 @@
+@import '../../index.scss';
+
+.header-app {
+    height: 10vh;
+    width: 100%;
+    // background: lightblue;
+    border-bottom: solid 1px darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
