@@ -16,6 +16,7 @@
 // }
 
 .store-item {
+    background: transparent;
     display: grid;
     grid-template-columns: repeat(4, 150px);
     grid-column-gap: 70px;
@@ -52,6 +53,7 @@
 // }
 
 .store-wrapper {
+    // background: transparent;
     display: flex;
     justify-content: center;
     align-content: center;

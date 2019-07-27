@@ -20,7 +20,7 @@ function StoreItem ({ fetchItem, store, onToggleModal, loading }) {
 
     const load = loading ? <Spinner /> : null;
 
-    const notFound = (!loading && (store.length === 0)) ? <p>Not found</p>  : null;
+    const notFound = (!loading && (store.length === 0)) ? <p className='text-white font-weight-bold'>Not found</p>  : null;
 
     const visibleStore = (!loading && (store.length === 0))
     ? null

@@ -1,0 +1,15 @@
+.home-page {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: url(./bg-fortnite-01.jpg) no-repeat;
+    background-size: cover;
+    /* align-content: flex-start; */
+    /* background: lightblue; */
+}
+
+.bg-image {
+background: rgba(255, 255, 255, 0.582);
+}

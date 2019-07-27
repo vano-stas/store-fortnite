@@ -10,3 +10,30 @@
     align-items: center;
 }
 
+.navigation-app {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    background: rgb(21, 32, 68);
+    color: white;
+
+}
+
+.nav-links-group {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.page-link-item {
+    color: white;
+    text-decoration: none;
+}
+
+.page-link-item :active {
+    text-decoration: none;
+    color: white;
+}

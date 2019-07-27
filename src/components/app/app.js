@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Header from '../header';
 import Main from '../main';
+import HomePage from '../home-page';
 
 import './app.scss';
 import StoreItemDescription from '../store-item-description';
@@ -60,7 +62,6 @@ function App () {
                 ratings: item.item.ratings
             })
         })
-        console.log(res.data);
         setStore([...storeSt]);
         setLoading(false);
     }
@@ -81,7 +82,6 @@ function App () {
 
     const onSearchChange = (e) => {
         setTerm(e.target.value);
-        console.log('work');
     }
 
     const search = (items, term) => {
@@ -111,16 +111,33 @@ function App () {
 
 
     return (
-        <div className='app'>
-            <Header  />
-            <Main
-                fetchItem={fetchItem}
-                onToggleModal={onToggleModal}
-                onSearchChange={onSearchChange}
-                store={visibleItems}
-                loading={loading} />
-            {storeModal}
-        </div>
+        <Router>
+            <div className='app'>
+                <Header  />
+
+                <Switch>
+                    <Route path='/' exact component={HomePage} />
+                    <Route path='/store' render={(props) => (
+                        <Main fetchItem={fetchItem}
+                        onToggleModal={onToggleModal}
+                        onSearchChange={onSearchChange}
+                        store={visibleItems}
+                        loading={loading} />
+                    )}/>
+                    {/* <Route path='/store' component={Main} /> */}
+                </Switch>
+
+                {/* <HomePage />
+                <Main
+                    fetchItem={fetchItem}
+                    onToggleModal={onToggleModal}
+                    onSearchChange={onSearchChange}
+                    store={visibleItems}
+                    loading={loading} />
+                 */}
+                 {storeModal}
+            </div>
+        </Router>
     )
 };
 
