@@ -11,31 +11,49 @@
 }
 
 .navigation-app {
+    padding-left: 20px;
+    padding-right: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 10vh;
     background: rgb(21, 32, 68);
     color: white;
+    ul {
+        flex-grow: 1;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+}
 
+.logo-item {
+    color: white;
 }
 
 .nav-links-group {
-    width: 20%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     list-style: none;
+    padding: 0;
+    padding-right: 50px;
+    margin: 0;
+    
 }
 
 .page-link-item {
-    color: white;
-    text-decoration: none;
+    margin-left: 20px;
 }
 
 .page-link-item :active {
     text-decoration: none;
     color: white;
+}
+
+.button-item {
+    // color: white;
+    width: 120px;
 }
 
 .cart-item {
@@ -47,4 +65,17 @@
     .nav-links-group {
         flex-direction: column;
     }
+
+    .page-link-item {
+        margin-top:3px;
+        margin-bottom: 3px;
+    }
+
+    .button-item {
+        // color: white;
+        width: 120px;
+        height: 30px;
+        padding: 2px;
+    }
+
 }
