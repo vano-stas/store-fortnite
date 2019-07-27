@@ -30,6 +30,8 @@ function App () {
     const [modalState, setModalState] = useState([]);
     const [term, setTerm] = useState("");
     const [loading, setLoading] = useState(true);
+    const [counter, setCounter] = useState(0);
+    const [counterAll, setCounterAll] = useState(0);
 
     const fetchItem = async () => {
         const data = await fetch('https://fortnite-api.theapinetwork.com/store/get', {
@@ -78,6 +80,12 @@ function App () {
 
     const toggleClose = () => {
         setShowStoreModal(!showStoreModal);
+        setCounter(0);
+    }
+
+    const stopFun = (e) => {
+        setCounter(0);
+        e.stopPropagation();   
     }
 
     const onSearchChange = (e) => {
@@ -96,6 +104,31 @@ function App () {
         // } else return vis;
     }
 
+    const onCounterChange = (e) => {
+        setCounter(+e.target.value + counter);
+    }
+
+    const increment = () => {
+        setCounter(counter + 1);
+        // console.log(counter);
+    }
+
+    const decrement = () => {
+        if (counter >0) {
+            setCounter(counter - 1);
+            // console.log(counter);
+        } else {
+            setCounter(0)
+            }
+    }
+
+    const addToCart = () => {
+        setCounterAll(counterAll + counter);
+        setShowStoreModal(!showStoreModal);
+        setCounter(0);
+        // console.log(counter);
+    }
+
     // const storeModal = showStoreModal ? <StoreItemDescription /> : null;
 
     const storeModal = showStoreModal
@@ -103,7 +136,14 @@ function App () {
         onToggleModal={onToggleModal}
         modalState={modalState}
         toggleClose={toggleClose}
-         />,
+        onCounterChange={onCounterChange}
+        increment={increment}
+        decrement={decrement}
+        counter={counter}
+        addToCart={addToCart}
+        stopFun={stopFun}
+        showStoreModal={showStoreModal}
+        setCounter={setCounter} />,
         document.getElementById('modal'))
     : null;
 
@@ -113,7 +153,7 @@ function App () {
     return (
         <Router>
             <div className='app'>
-                <Header  />
+                <Header counterAll={counterAll}  />
 
                 <Switch>
                     <Route path='/' exact component={HomePage} />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './header.scss';
 
-function Header () {
+function Header ({ counterAll }) {
     return (
         // <div className='header-app'>
         <nav className='navigation-app'>
@@ -18,6 +18,7 @@ function Header () {
                     <li className='page-link-item' >Catalog</li>
                 </Link>
             </ul>
+            <button className='btn btn-outline-light'><i class="fa fa-shopping-cart cart-item"></i> ({counterAll}) </button>
         </nav>
 
             

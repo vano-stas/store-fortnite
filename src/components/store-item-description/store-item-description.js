@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import CartButton from '../cart-button';
 
 import './store-item-description.scss';
 
-function StoreItemDescription({ modalState, onToggleModal, toggleClose }) {
+function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounterChange, increment, decrement, counter, addToCart, showStoreModal, setCounter }) {
 
-    const { name, cost, description, image, isFeatured, isNew, ratings } = modalState;
+    useEffect(() => {
+        setCounter(0);
+    }, [showStoreModal]);
+
+    const { name, cost, description, image, isFeatured, ratings } = modalState;
 
     const descriptionText = description ? description : 'No description';
     const available = isFeatured
         ? <p className='text-success font-weight-bold'>Available</p>
         : <p className='text-danger font-weight-bold'>Under the order</p>;
-    // const newItem = isNew ? (<div><p>New</p></div>) : '';
-    
+        
     const stopFun = (e) => {
-        e.stopPropagation();
-        console.log('work');
+        // setCounter(0);
+        e.stopPropagation();   
     }
+
 
     return (
         <div className='modal-wrapper' onClick={onToggleModal}>
@@ -36,30 +41,23 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose }) {
                         <p className='info-text'>Availability:</p>
                         <p>{available}</p>
                     </div>
-                    {/* {newItem} */}
                     <div className='cost'>
                         <p className='info-text'>Cost:</p>
                         <p>{cost}</p>
                     </div>
-                    <div>
-                        {/* <div class="rating">
-                            <div class="stars">
-                                <div class="on" style={{width: `88%`}}></div>
-                                <div class="live">
-                                    <span data-rate="1"></span>
-                                    <span data-rate="2"></span>
-                                    <span data-rate="3"></span>
-                                    <span data-rate="4"></span>
-                                    <span data-rate="5"></span>
-                                </div>
-                            </div>
-                        </div> */}
+                    <div className='rating'>
                         <p className='info-text'>Rating:</p>
                         <p className='font-weight-bold'>{ratings.avgStars}</p>
                     </div>
+                    <CartButton 
+                        onCounterChange={onCounterChange}
+                        increment={increment}
+                        decrement={decrement}
+                        counter={counter}
+                        addToCart={addToCart} />
                 </div>
                 <div className='close-button'>
-                    <button type="button" class="close" aria-label="Close"
+                    <button type="button" className="close" aria-label="Close"
                         onClick={toggleClose}>
                         <span aria-hidden="true">&times;</span>
                     </button>

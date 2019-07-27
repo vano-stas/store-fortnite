@@ -6,3 +6,15 @@
 .search-input {
     width: 500px;
 }
+
+@media (min-width: 510px) and (max-width: 699px) {
+    .search-input {
+        width: 350px;
+    }
+}
+
+@media (max-width: 509px) {
+    .search-input {
+        width: 250px;
+    }
+}

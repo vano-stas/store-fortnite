@@ -37,3 +37,14 @@
     text-decoration: none;
     color: white;
 }
+
+.cart-item {
+    font-size: 18px
+}
+
+
+@media (max-width: 509px) {
+    .nav-links-group {
+        flex-direction: column;
+    }
+}

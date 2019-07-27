@@ -7,14 +7,14 @@ function HomePage() {
         <div className='home-page'>
             <div class="jumbotron pt-5 col-12 mb-0 bg-image font-weight-bold">
                 <h1 class="display-4 font-weight-bold">Fortnite</h1>
-                <p class="lead font-weight-bold">Бесплатная, постоянно развивающаяся игра в PvP-режиме на 100 игроков.</p>
+                <p class="lead font-weight-bold">Build. Battle. Create.</p>
                 <hr class="my-4 bg-dark" />
-                <p>   Станьте частью постоянно развивающейся многопользовательской игры, включающей три основных режима, каждый из которых обладает уникальным игровым процессом, наградами и сюрпризами.</p> 
-                <p>Составьте друзьям компанию в волнующих матчах на выбывание и сражайтесь, чтобы остаться последним выжившим бойцом в королевской битве. Работайте сообща, чтобы построить мир вашей мечты в творческом режиме Fortnite. Или объединитесь с тремя друзьями, чтобы сразиться с полчищами монстров в режиме «Сражение с бурей».</p>
-                <p>Каждый режим постоянно развивается благодаря еженедельным обновлениям, добавляющим в игру или убирающим из нее оружие, события, сезонные бонусы, изменяющие игровой мир, награды и игровые возможности.</p>
-                <p>Здесь работает только одно правило: чем больше вы играете, тем больше предметов сможете разблокировать.</p>
+                <p>Be part of an ever-evolving multiplayer experience spread across three main modes, each with a unique play approach, rewards to unlock and things to discover.</p> 
+                <p>Join your friends in an immense elimination match and fight to be the last ones standing in Battle Royale, collaborate to craft your own dream Fortnite world in Creative mode or band together with up to three friends to fend off hordes of monsters in Save the World.</p>
+                <p>Every mode evolves naturally with weekly updates that add or remove weapons or introduce new events and seasonal updates that reshape the game world, add new rewards to unlock or brand-new in-game features.</p>
+                <p>Only one rule matters: the more you play, the more you earn.</p>
                 <p class="lead">
-                    <a class="btn btn-dark btn-lg" href="https://www.epicgames.com/fortnite/ru/home" role="button">Играть!</a>
+                    <a class="btn btn-dark btn-lg" href="https://www.epicgames.com/fortnite/ru/home" role="button">GO   !</a>
                 </p>
             </div>
         </div>
