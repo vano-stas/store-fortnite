@@ -21,7 +21,9 @@ function Header ({ counterAll }) {
                 </li>
                 </Link>
             </ul>
-            <button className='btn btn-outline-light'><i className="fa fa-shopping-cart cart-item"></i> ({counterAll}) </button>
+            <Link to='/cart'>
+                <button className='btn btn-outline-light'><i className="fa fa-shopping-cart shopping-cart"></i> ({counterAll}) </button>
+            </Link>
         </nav>
     )
 };

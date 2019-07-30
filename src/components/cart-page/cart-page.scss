@@ -1,0 +1,71 @@
+.cart-page-wrapper {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    // min-height: 90vh;
+    min-height: 90vh;
+    width: 100%;
+    background: url(./bg-fortnite-04.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    // overflow: auto;
+}
+
+.cart-page-content {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    // background: rgba(15, 15, 15, 0.7);
+
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 90%;
+    width: 90%;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.cart-item {
+    margin: 10px;
+    height: 100px;
+    width: 90%;
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    img {
+        margin-left: 15px;
+        margin-right: 15px;
+        height: 80%;
+    }
+}
+
+.cart-item-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    // justify-content:;
+    // align-items: space-between;
+
+}
+
+.cart-item-total {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin-right: 15px;
+    p {
+        margin: 0;
+    }
+
+}

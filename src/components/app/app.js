@@ -5,6 +5,7 @@ import Header from '../header';
 import Main from '../main';
 import HomePage from '../home-page';
 import ErrorIndicator from '../error-indicator';
+import CartPage from '../cart-page';
 
 import './app.scss';
 import StoreItemDescription from '../store-item-description';
@@ -19,6 +20,7 @@ function App () {
     const [counter, setCounter] = useState(0);
     const [counterAll, setCounterAll] = useState(0);
     const [hasError, setHasError] = useState(false);
+    const [storeCart, setStoreCart] = useState([]);
 
     const fetchItem = async () => {
         try {
@@ -41,7 +43,9 @@ function App () {
                     description: item.item.description,
                     isFeatured: item.store.isFeatured,
                     isNew: item.store.isNew,
-                    ratings: item.item.ratings
+                    ratings: item.item.ratings,
+                    inCart: false,
+                    count: 0
                 })
             });
             setStore([...storeSt]);
@@ -100,10 +104,40 @@ function App () {
         }
     }
 
-    const addToCart = () => {
+    const addToCart = (e) => {
+
+        const newArr = storeCart;
+        const item = store.filter(elem => { 
+            return elem.itemId === e
+        });
+        const newItem = newArr.filter(elem => {
+            return elem.itemId === e
+        });
+        
+        (newArr.length > 0 && newItem.length > 0 )
+        ? isInCart(newArr, item)
+        : newItemCart(item)
+
         setCounterAll(counterAll + counter);
         setShowStoreModal(!showStoreModal);
         setCounter(0);
+    }
+
+    const isInCart = (newArr, item) => { 
+        newArr.forEach((elem) => {
+            if (elem.itemId === item[0].itemId) {
+                elem.count = elem.count + counter;
+            }
+        });
+        setStoreCart([...newArr]);
+    }
+
+    const newItemCart = (item) => {
+        item.forEach((elem) => {
+            elem.inCart = true;
+            elem.count = counter;
+        })
+        setStoreCart([...storeCart, ...item]);
     }
 
     const storeModal = showStoreModal
@@ -139,6 +173,10 @@ function App () {
                         store={visibleItems}
                         loading={loading}
                         showError={showError} />
+                    )}/>
+                    <Route path='/cart' render={(props) => (
+                        <CartPage
+                        storeCart={storeCart} />
                     )}/>
                 </Switch>
                 {storeModal}

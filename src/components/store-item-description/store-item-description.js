@@ -9,7 +9,7 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounte
         setCounter(0);
     }, [setCounter]);
 
-    const { name, cost, description, image, isFeatured, ratings } = modalState;
+    const { name, cost, description, image, isFeatured, ratings, itemId } = modalState;
 
     const descriptionText = description ? description : 'No description';
     const available = isFeatured
@@ -52,7 +52,7 @@ function StoreItemDescription({ modalState, onToggleModal, toggleClose, onCounte
                         increment={increment}
                         decrement={decrement}
                         counter={counter}
-                        addToCart={addToCart} />
+                        addToCart={() => addToCart(itemId)} />
                 </div>
                 <div className='close-button'>
                     <button type="button" className="close" aria-label="Close"
